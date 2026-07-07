@@ -1,0 +1,6 @@
+{
+  "name": "기계 안전 표준 Q&A 도우미",
+  "description": "국제 기계 안전 표준 및 지침(ISO 12100, ISO 13849, IEC 60204 등)에 대한 구조화된 검토 절차를 수행하는 기계 안전 전문가 도우미입니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

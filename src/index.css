@@ -1,0 +1,77 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F7F4EB;
+  color: #3A3835;
+}
+
+/* Custom Mechanical Drafting Styles */
+.bg-drafting-grid {
+  background-color: #F7F4EB;
+  background-image: 
+    linear-gradient(to right, #E8E2D2 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, #E8E2D2 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
+
+.bg-drafting-grid-sub {
+  background-image: 
+    linear-gradient(to right, rgba(232, 226, 210, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 226, 210, 0.4) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.bg-dark-drafting {
+  background-color: #1F1E1B;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Blueprint Line Drawing Look */
+.border-blueprint {
+  border-color: #CFC5AD;
+}
+
+.border-blueprint-ink {
+  border-color: #4A4640;
+}
+
+/* Gear Rotation Animations */
+@keyframes gear-spin-cw {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes gear-spin-ccw {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+.animate-gear-cw {
+  animation: gear-spin-cw 25s linear infinite;
+}
+
+.animate-gear-ccw {
+  animation: gear-spin-ccw 18s linear infinite;
+}
+
+/* Tech Blueprint Drawing Board Border Frame */
+.tech-frame {
+  position: relative;
+}
+.tech-frame::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(74, 70, 64, 0.12);
+  pointer-events: none;
+  border-radius: inherit;
+}
