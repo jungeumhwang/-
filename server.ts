@@ -13,10 +13,11 @@ app.use(express.json({ limit: "15mb" }));
 
 // Initialize Gemini Client
 const getGeminiClient = (customApiKey?: string) => {
-  const apiKey = customApiKey || process.env.GEMINI_API_KEY;
+  let apiKey = customApiKey || process.env.GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error("Gemini API Key가 설정되지 않았습니다. 랜딩 페이지 또는 환경 변수(GEMINI_API_KEY)에 유효한 API Key를 등록해 주십시오.");
   }
+  apiKey = apiKey.trim();
   return new GoogleGenAI({
     apiKey: apiKey,
     httpOptions: {
@@ -67,10 +68,11 @@ function parseGeminiError(error: any): string {
 app.post("/api/verify-key", async (req, res) => {
   try {
     const { customApiKey } = req.body;
-    const apiKey = customApiKey || process.env.GEMINI_API_KEY;
+    let apiKey = customApiKey || process.env.GEMINI_API_KEY;
     if (!apiKey) {
       return res.status(400).json({ error: "검증할 Gemini API Key가 입력되지 않았습니다." });
     }
+    apiKey = apiKey.trim();
 
     const ai = new GoogleGenAI({
       apiKey: apiKey,
@@ -83,7 +85,7 @@ app.post("/api/verify-key", async (req, res) => {
 
     // Run a tiny check to ensure the key actually works
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-2.5-flash",
       contents: "API key validation check. Simply reply 'OK'.",
     });
 
@@ -181,7 +183,7 @@ ${documentContent ? documentContent : "(사용자가 직접 업로드한 안전 
 위의 5가지 수집된 답변 조건과 사용자가 직접 전달한 안전 표준 문서 텍스트(있는 경우)를 종합적으로 분석하고, 기재된 모든 "가장 중요한 원칙" 및 "출력 형식"에 맞춰 '기계 안전 표준 기술 검토 결과'를 작성해 주십시오.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-2.5-flash",
       contents: userPrompt,
       config: {
         systemInstruction,
